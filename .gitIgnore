@@ -1,5 +1,6 @@
 #dependencies
 target/
+node_modules/
 
 .classpath
 .project
