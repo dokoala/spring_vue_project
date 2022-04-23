@@ -1,6 +1,7 @@
 package com.spring.vue.service;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
@@ -32,5 +33,22 @@ public class BoardService implements BoardServiceImpl{
 		}
 		return boardList;
 	}
+	
+	public void registBoard(BoardVO vo) {
+		// TODO Auto-generated method stub
+		
+		vo.setRegDate(new Date());
+		vo.setWriter("user");
+		
+		try (SqlSession session = sqlSessionFactory.openSession()) {
+			BoardMapper mapper = session.getMapper(BoardMapper.class);
+
+			mapper.registBoard(vo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+		}
+	}
+
 
 }
