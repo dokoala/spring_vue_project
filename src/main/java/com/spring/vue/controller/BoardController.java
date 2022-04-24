@@ -1,6 +1,9 @@
 package com.spring.vue.controller;
 
 import org.slf4j.LoggerFactory;
+
+import java.io.Console;
+
 import org.slf4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -84,6 +87,26 @@ public class BoardController {
 		}
 
 		return result;
-
 	}
+	
+	@ResponseBody
+    @RequestMapping(value = "edit-board.do", method = RequestMethod.POST)
+    public ResultVO editBoard(@RequestBody BoardVO vo) 
+    {    
+        // 호출 시 찍히게 될 로그
+        LOG.info("[POST] editBoard");
+        // 결과 값을 담을 ResultVO를 선언한 생성자를 통해서 만드는데 기본값은 success는 false, result는 null로 세팅
+        ResultVO result = new ResultVO(false, null);
+ 
+        try {
+            result.setResult(service.editBoard(vo));
+            result.setSuccess(true);
+        } catch (Exception e) {
+            // TODO: handle exception
+            LOG.error("[Board] editBoard : " + e.getMessage(), e);
+        }
+ 
+        return result;
+ 
+    }
 }
