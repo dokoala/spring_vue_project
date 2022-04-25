@@ -12,6 +12,7 @@
         v-model="content"
       >
       </el-input>
+      
       <!-- dialog footer 영역 -->
       <span slot="footer" class="dialog-footer">
         <el-button type="primary" @click="registboard()">확인</el-button>
